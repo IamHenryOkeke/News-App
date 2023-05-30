@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react"
+import Articles from "./components/Articles";
+
+
 const App = () => {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState(null);
@@ -15,6 +18,7 @@ const App = () => {
       console.log(data);
       setData(data)
       setLoading(false)
+      setError("")
     }).catch((error) => {
        console.log(error.message)
        setError(`${error.message}`)
@@ -39,17 +43,9 @@ const App = () => {
             {error}
           </p>)}
           {data && (
-            data.articles.map((article, index) => {
-              return (
-                <div key={index} id={index}>
-                  <h1>{article.title}</h1>
-                  <p>{article.description}</p>
-                  <p>{article.author === null ? "Unknown author" : article.author}</p>
-                  <p>{article.publishedAt}</p>
-                </div>
+           <Articles data={data.articles}/>
               )
-            })
-          )}
+            }
       </div>
     </div>
   )
