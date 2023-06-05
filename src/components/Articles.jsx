@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import ReactPaginate from 'react-paginate';
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
 
 const Articles = ({data}) => {
   const [currentItems, setCurrentItems] = useState([]);
@@ -27,14 +28,16 @@ const Articles = ({data}) => {
           return (
             <div className="text-[14px] md:text-base bg-gray-100 border border-[#ceb9bf] rounded-md py-2 px-1" key={index} id={index}>
               <div key={index} id={index} className='flex flex-col gap-5'>
-                  <h1>{item.title}</h1>
+                  <Link to={`/ArticlesDetails/${index}`}>{item.title}</Link>
                   <p>{item.description}</p>
                   <p>{item.author === null ? "Unknown author" : `${item.author}`}</p>
-                  <p>{item.publishedAt}</p>
+                  <p>Source: {(item.source.name)}</p>
+                  <p>{(item.publishedAt).slice(0, 10)}</p>
                 </div>
             </div>
           )
         })}
+        
       </div>
       <ReactPaginate
         breakLabel="..."
