@@ -1,32 +1,27 @@
-// import { useState } from "react";
-import Articles from "./components/Articles";
-import useFetch from "./hooks/useFetch";
-import Filter from "./components/Filter";
-
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Home from './components/Home';
+import ArticlesDetails from './components/ArticlesDetails';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getNewsData } from './features/newsSlice';
 
 const App = () => {
-  const {data, loading, error} = useFetch();
+  const dispatch = useDispatch()
+  const { feedItems, newsItems, isLoading, error } = useSelector((state => state.news));
+
+  useEffect(()=>{
+    dispatch(getNewsData())
+  },[])
+  
   return (
-    <div className="flex flex-col items-center gap-10 font-[Poppins]">
-      <h1 className="text-6xl text-red-800">Breaking news</h1>
-      {
-        data && (
-          <Filter data={data.articles}/>        
-        )
-      }
-      <div>
-          {loading && (<p>
-            Loading.....
-          </p>)}
-          {error && (<p>
-            {error}
-          </p>)}
-          {data && (
-           <Articles data={data.articles}/>
-              )
-            }
-      </div>
-    </div>
+    <Router>
+      <h1 className="text-6xl text-red-800 text-center">Breaking news</h1>
+      <Routes>
+        <Route path="/" element={<Home data={feedItems} loading={isLoading} error={error} />} />
+        <Route path='/ArticlesDetails/:index' element={<ArticlesDetails data={feedItems}/>}/>
+      </Routes>
+    </Router>
+    
   )
 }
 
