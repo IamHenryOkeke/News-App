@@ -6,7 +6,9 @@ const initialState = {
   newsItems: [],
   feedItems : [],
   isLoading: true,
-  error : null
+  error : null,
+  mail : "",
+  modalStatus : false
 };
 
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -36,7 +38,15 @@ const newsSlice = createSlice({
       }else{
         state.feedItems = state.newsItems
       }
-      
+    },
+    handleSubscribe : (state, action) => {
+      state.mail = action.payload
+    },
+    openModal : (state) => {
+      state.modalStatus = true
+    },
+    closeModal : (state) => {
+      state.modalStatus = false
     }
   },
   extraReducers : {
@@ -44,14 +54,14 @@ const newsSlice = createSlice({
       state.isLoading = true;
     },
     [getNewsData.fulfilled]: (state, action) => {
-      // console.log(action);
+      console.log(action);
       state.isLoading = false;
       state.error = null;
       state.newsItems = action.payload;
       state.feedItems = action.payload;
     },
     [getNewsData.rejected]: (state,action) => {
-      console.log(action)
+      // console.log(action)
       state.isLoading = false;
       state.error = action.payload;
     },
@@ -59,6 +69,6 @@ const newsSlice = createSlice({
 });
 
 // console.log(newsSlice);
-export const { filterNews } = newsSlice.actions
+export const { filterNews, handleSubscribe, openModal, closeModal } = newsSlice.actions
 
 export default newsSlice.reducer;
