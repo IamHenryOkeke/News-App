@@ -9,15 +9,18 @@ const Navbar = () => {
   const navTexts = ["Home","About","Category","Contact"]
   return (
     <motion.nav initial = {{x : -1000}}
-    animate = {{x : 0}} className="mx-4 mb-6">
-      <div className='bg-[#C2DEDC] mt-6 px-3 py-3 lg:mx-24 lg:mt-8 flex justify-between items-center border rounded-3xl md:px-[42px] md:py-[28px]'>
+    animate = {{x : 0}} className="mx-4 mb-6 lg:mx-28">
+      <div className='bg-[#C2DEDC] mt-6 px-3 py-3 lg:mt-8 flex justify-between items-center border rounded-3xl md:px-[42px] md:py-[28px]'>
         <a href="/" className='md:text-lg font-medium lg:w-1/4'>
             TechWatchDog
         </a>
         <div className="items-center justify-around flex-grow hidden lg:flex">
-          <div className='flex flex-col gap-12 lg:flex-row'>
+          <div className='flex flex-col gap-12 lg:flex-row lg:text-lg'>
             {
               navTexts.map((item, index) => {
+                if(item === "Home") {
+                  return <Link to = "/" key={index} className='hover:text-[#1BA9B5] cursor-pointer'>{item}</Link>
+                }
                 return <p key={index} className='hover:text-[#1BA9B5] cursor-pointer'>{item}</p>
               })
             }
@@ -38,6 +41,9 @@ const Navbar = () => {
           <div className='flex flex-col items-center gap-5'>
             {
               navTexts.map((item, index) => {
+                if(item === "Home") {
+                  return <Link to = "/" key={index} className='hover:text-[#1BA9B5] cursor-pointer'>{item}</Link>
+                }
                 return <p key={index} className='hover:text-[#1BA9B5] cursor-pointer'>{item}</p>
               })
             }

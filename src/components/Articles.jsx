@@ -23,12 +23,12 @@ const Articles = ({data}) => {
 
   return (
     <>
-      <div className='flex flex-col gap-4 mx-4'>
+      <div className='flex flex-col gap-4 mx-4 lg:mx-52'>
         {currentItems.map((item, index) => {
           return (
-            <div className="text-[14px] md:text-base bg-slate-200 border border-[#ceb9bf] rounded-md py-2 px-1" key={index} id={index}>
+            <div className="text-[14px] md:text-base lg:text-lg bg-slate-200 border border-[#ceb9bf] rounded-md py-2 px-1" key={index} id={index}>
               <div key={index} id={index} className='flex flex-col gap-3 pl-6 py-2'>
-                  <Link className='text-2xl hover:text-blue-600 font-bold' to={`/ArticlesDetails/${index}`}>{item.title}</Link>
+                  <Link className='text-2xl lg:text-3xl hover:text-blue-600 font-bold' to={`/ArticlesDetails/${index}`}>{item.title}</Link>
                   <p>{item.description}</p>
                   
                   <p>Author: {item.author === null ? (<span>Unknown author</span>) : (<span className=''>{item.author}</span>)}</p>
