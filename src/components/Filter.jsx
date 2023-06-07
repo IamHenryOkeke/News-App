@@ -14,7 +14,7 @@ const Filter = ({ data }) => {
   
   return (
     <div className="flex gap-5 items-center">
-        <p>Filter:</p>
+        <p className='text-xl'>Filter:</p>
         <select className='bg-blue-400 pl-2 py-1 rounded' onChange={(e) => {
           dispatch(filterNews(e.target.value))
         }}>
