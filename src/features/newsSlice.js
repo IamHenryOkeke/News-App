@@ -13,7 +13,7 @@ const initialState = {
 
 const apiKey = import.meta.env.VITE_API_KEY;
 
-const url = `https://newsapi.org/v2/everything?q=tech&apiKey=${apiKey}`;
+const url = `https://newsapi.org/v2/everything?q=tech&apiKey=bc2bba82e57c409b8a007d14ac9d68fa`;
 
 export const getNewsData = createAsyncThunk('cart/getNewsItems', async (_, thunkAPI) => {
   try {
